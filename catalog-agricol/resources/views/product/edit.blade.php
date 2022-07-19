@@ -8,8 +8,9 @@
 
             <h2>Modifier produit</h2>
 
-            <form action="/product/{{ $product->id }}" method="put">
+            <form action="/product/{{ $product->id }}" method="post">
                 @csrf
+                @method('PUT')
                 <label for="image">image</label>
                 <img src="{{ $product->image }}" alt="product image">
                 <input type="image" src="" alt="">
@@ -26,9 +27,9 @@
                     <option value="g">g</option>
                 </select>
                 <label for="category">Catégorie</label>
-                <select name="category" id="category">
-                    @foreach($categories as category)
-                        <option value="$category->id">{{$category->name}}</option>
+                <select name="category" id="category" value='{{$product->category_id}}'>
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
                 <input type="submit" value="edit product">

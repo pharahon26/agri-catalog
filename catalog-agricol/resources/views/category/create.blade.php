@@ -6,15 +6,14 @@
             <div class="col-2"></div>
             <div class="col p-3 bg-light">
 
-            <h2>Modifier catégorie</h2>
+            <h2>Nouvelle catégory</h2>
 
             <form action="/category" method="post">
                 @csrf
-                @method('PUT')
                 <label for="name">Nom</label>
-                <input type="text" name="name" id="name" value="{{$category->name}}">
+                <input type="text" name="name" id="name">
 
-                <input type="submit" value="Modifier">
+                <input type="submit" value="enregistrer">
             </form>
 
             </div>

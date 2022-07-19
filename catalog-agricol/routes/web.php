@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +84,7 @@ Route::get('/product/{id}', [ProduitController::class, 'show']);
         delete : delete produit
 */
 
-Route::get('/product/create', [ProduitController::class, 'create']);
+Route::get('produit/create', [ProduitController::class, 'create']);
 Route::post('/product', [ProduitController::class, 'store']);
 Route::get('/product/{id}/edit', [ProduitController::class, 'edit']);
 Route::put('/product/{id}', [ProduitController::class, 'update']);
@@ -99,3 +101,10 @@ Route::delete('/product/{id}', [ProduitController::class, 'destroy']);
         post : modifier une categorie
         delete : delete categorie
 */
+
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/create', [CategoryController::class, 'create']);
+Route::post('/category', [CategoryController::class, 'store']);
+Route::get('/category/{id}/edit', [CategoryController::class, 'edit']);
+Route::put('/category/{id}', [CategoryController::class, 'update']);
+Route::delete('/category/{id}', [CategoryController::class, 'destroy']);

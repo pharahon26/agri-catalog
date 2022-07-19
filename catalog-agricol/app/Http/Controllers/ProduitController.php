@@ -4,74 +4,70 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\Category;
 
 class ProduitController extends Controller
 {
     public function index()
     {
-        $products = [
-            ["id" => 0, "name"=>"blé", "category"=>"céréales", "price"=>5500, "quantity"=> "15 kg"],
-            ["id" => 1, "name"=>"riz", "category"=>"céréales", "price"=>4000, "quantity"=> "10 kg"],
-            ["id" => 2, "name"=>"maïs", "category"=>"céréales", "price"=>25000, "quantity"=> "50 kg"],
-            ["id" => 3, "name"=>"patate", "category"=>"féculent", "price"=>6500, "quantity"=> "10 kg"],
-            ["id" => 4, "name"=>"mangue", "category"=>"fruits", "price"=>2500, "quantity"=> "12 pièces"],
-        ];
-        return view('product.index', ['products'=>$products]);
-    }
 
-    public function show($id) {
-        $products = [
-            ["id" => 0, "name"=>"blé", "category"=>"céréales", "price"=>5500, "quantity"=> "15 kg"],
-            ["id" => 1, "name"=>"riz", "category"=>"céréales", "price"=>4000, "quantity"=> "10 kg"],
-            ["id" => 2, "name"=>"maïs", "category"=>"céréales", "price"=>25000, "quantity"=> "50 kg"],
-            ["id" => 3, "name"=>"patate", "category"=>"féculent", "price"=>6500, "quantity"=> "10 kg"],
-            ["id" => 4, "name"=>"mangue", "category"=>"fruits", "price"=>2500, "quantity"=> "12 pièces"],
-        ];
-        return view('product.show', ['product'=> $products[$id]]);
+        $categories = Category::orderBy('name', "desc")->get();
+
+        $products = Produit::orderBy('name', "desc")->get();
+
+        return view('product.index', ['products'=>$products, 'categories'=>$categories]);
     }
 
     public function create() {
-
-        return view('product.create');
+        $categories = Category::orderBy('name', 'desc')->get();
+        return view('product.create', ['categories'=>$categories]);
     }
 
-    public function store() {
+    public function show($id) {
+        $product = Produit::findOrFail($id);
+        return view('product.show', ['product'=> $product]);
+    }
 
-        $product = new Product();
-        $product->image = request('image');
+    public function store(Request $request) {
+
+        $product = new Produit();
+        error_log(request()->hasFile('image'));
+
+        $product->image = substr(request()->file('image')->store('public/assets/images'),7);
         $product->name = request('name');
         $product->price = request('price');
         $product->quantity = request('quantity');
-        $product->quantity = request('quantity_type');
+        $product->quantity_type = request('quantity_type');
         $product->category_id = request('category');
 
         $product->save();
 
-        return redirect('/');;
+        return redirect('/');
     }
 
     public function edit($id) {
-
-        return view('product.edit', ['product'=> $products[$id]]);
+        $product = Produit::findOrFail($id);
+        $categories = Category::orderBy('name')->get();
+        return view('product.edit', ['product'=> $product, 'categories'=>$categories]);
     }
 
-    public function update() {
+    public function update(Request $request, $id) {
 
-        $product = new Product();
-        $product->image = request('image');
+        $product = Produit::findOrFail($id);
+        $product->image = $request->file('image')->store('public/assets/images');
         $product->name = request('name');
         $product->price = request('price');
         $product->quantity = request('quantity');
-        $product->quantity = request('quantity_type');
+        $product->quantity_type = request('quantity_type');
         $product->category_id = request('category');
 
         $product->update();
-
-        return redirect('/');;
+        return redirect("/product/" . $id);
     }
 
     public function destroy($id) {
-
+        $product = Produit::findOrFail($id);
+        $product->delete();
         return redirect('/');
     }
 
