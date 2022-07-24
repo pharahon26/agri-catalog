@@ -17,11 +17,13 @@ return new class extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->string('thumbnail');
             $table->string('name');
             $table->double('price');
             $table->integer('quantity');
             $table->string('quantity_type');
-            $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade');
             $table->timestamps();
         });
     }

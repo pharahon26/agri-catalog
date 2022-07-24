@@ -12,6 +12,10 @@
                 @csrf
                 <label for="name">Nom</label>
                 <input type="text" name="name" id="name">
+                <div>
+                    <label class="form-label p-2" for="description">Description</label>
+                    <input  class="form-control" type="text" name="description" id="description">
+                </div>
 
                 <input type="submit" value="enregistrer">
             </form>

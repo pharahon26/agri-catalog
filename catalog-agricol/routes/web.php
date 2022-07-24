@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -55,13 +56,6 @@ use App\Http\Controllers\CategoryController;
         get : profil
         get : modifier profil
 */
-Route::get('/connexion', function () {
-    return view('connexion');
-});
-
-Route::get('/profil', function () {
-    return view('profil');
-});
 
 /*
     PRODUiTS
@@ -70,9 +64,11 @@ Route::get('/profil', function () {
         get : détail produit
         post : recherche produit
 */
-Route::get('/', [ProduitController::class, 'index']);
+Route::get('/', [ProduitController::class, 'index'])->name('catalogue');
 
-Route::get('/product/{id}', [ProduitController::class, 'show']);
+Route::get('/product/{id}', [ProduitController::class, 'show'])->name('prodiut.show');
+Route::post('/product/search', [ProduitController::class, 'search'])->name('produit.search');
+
 
 /*
     PRODUiTS
@@ -84,11 +80,11 @@ Route::get('/product/{id}', [ProduitController::class, 'show']);
         delete : delete produit
 */
 
-Route::get('produit/create', [ProduitController::class, 'create']);
-Route::post('/product', [ProduitController::class, 'store']);
-Route::get('/product/{id}/edit', [ProduitController::class, 'edit']);
-Route::put('/product/{id}', [ProduitController::class, 'update']);
-Route::delete('/product/{id}', [ProduitController::class, 'destroy']);
+Route::get('produit/create', [ProduitController::class, 'create'])->middleware('auth')->name('produit.create');
+Route::post('/product', [ProduitController::class, 'store'])->middleware('auth')->name('prodiut.store');
+Route::get('/product/{id}/edit', [ProduitController::class, 'edit'])->middleware('auth')->name('prodiut.edit');
+Route::put('/product/{id}', [ProduitController::class, 'update'])->middleware('auth')->name('prodiut.update');
+Route::delete('/product/{id}', [ProduitController::class, 'destroy'])->middleware('auth')->name('prodiut.destroy');
 
 /*
     CATEGORIES
@@ -102,9 +98,17 @@ Route::delete('/product/{id}', [ProduitController::class, 'destroy']);
         delete : delete categorie
 */
 
-Route::get('/category', [CategoryController::class, 'index']);
-Route::get('/category/create', [CategoryController::class, 'create']);
-Route::post('/category', [CategoryController::class, 'store']);
-Route::get('/category/{id}/edit', [CategoryController::class, 'edit']);
-Route::put('/category/{id}', [CategoryController::class, 'update']);
-Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
+Route::get('/category', [CategoryController::class, 'index'])->middleware('auth')->name('category.index');
+Route::post('/category/search', [CategoryController::class, 'search'])->middleware('auth')->name('category.search');
+Route::get('/category/create', [CategoryController::class, 'create'])->middleware('auth')->name('category.create');
+Route::post('/category', [CategoryController::class, 'store'])->middleware('auth')->name('category.store');
+Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->middleware('auth')->name('category.edit');
+Route::put('/category/{id}', [CategoryController::class, 'update'])->middleware('auth')->name('category.update');
+Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->middleware('auth')->name('category.destroy');
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/user/edit', [HomeController::class, 'edit'])->name('user.edit');
+Route::post('/user/update', [HomeController::class, 'update'])->name('user.update');
+

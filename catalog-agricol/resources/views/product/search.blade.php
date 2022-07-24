@@ -7,25 +7,22 @@
             <div class="col p-3">
                 <div class="card">
                     <div class="card-header">
-                        <div class="d-flex justify-content-between">
-                            <h2>Liste de produits</h2>
-                            @if (Auth::check())
-                                <button class="bb bb-3"><a class="m-2" href="{{ Route('produit.create')}}">Nouveau produit</a></button>
-
-                            @endif
-                        </div>
-
+                        <h2>Liste de produits</h2>
                         <div>
-                            <form class="d-flex" action="{{Route('produit.search')}}" method="post" role="search">
+                            <form class="d-flex" action='{{ Route("produit.search") }}' method="post" role="search">
                                 @csrf
-                                <input class="form-control me-2" type="search" name="search" placeholder="recherche" aria-label="recherche">
+                                <input class="form-control me-2" type="search" name="search" value="{{$search}}" placeholder="{{$search}}" aria-label="recherche">
                                 <select  class="form-control p-2" name="category" id="category">
                                     <option value="*">Catégories</option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @if($category_id == $category->id)
+                                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                                        @else
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
-                                <button class="custom-btn" type="submit">Rechercher</button>
+                                <button type="submit">Rechercher</button>
                             </form>
                         </div>
                     </div>
@@ -66,9 +63,7 @@
                 </div>
 
             </div>
-            <div class="col-2">
-
-            </div>
+            <div class="col-2"></div>
         </div>
     </div>
 @endsection
