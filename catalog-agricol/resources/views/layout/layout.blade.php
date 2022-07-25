@@ -39,13 +39,18 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                             @if (Auth::check())
-                                <li class="m-2" dis><a href="{{ route('home') }}">Profil</a></li>
-                                <li class="m-2"><a href="{{ route('category.index') }}">Catégories</a></li>
+                                <li class="m-2 text-primary" dis><a href="{{ route('home') }}" style="text-decoration: none;">Profil</a></li>
+                                <li class="m-2 text-primary"><a href="{{ route('category.index') }}" style="text-decoration: none;">Catégories</a></li>
                             @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                            <form class="d-flex" action="{{Route('produit.search')}}" method="post" role="search">
+                                @csrf
+                                <input class="form-control me-2" type="search" name="search" placeholder="recherche" aria-label="recherche" style="border-radius: 15px; width: 450px;">
+                                <button class="bb-sr m-2" type="submit">Rechercher</button>
+                            </form>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

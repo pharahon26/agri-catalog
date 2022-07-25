@@ -25,7 +25,7 @@
             <div class="col p-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Modifier produit</h2>
+                        <h4>Modifier produit</h4>
                     </div>
                     <div class="card-body">
                         <form action="/product/{{ $product->id }}" method="post" style="display:block; marging:auto">
@@ -94,8 +94,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end">
-                                <input class="m-3" type="submit" value="edit product">
+                            <div class="d-flex justify-content-end m-2">
+                            <input class="bb-pr ps-2 pe-2" type="submit" value="Enregistrer">
                             </div>
 
                         </form>

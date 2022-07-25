@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}<a class="m-2" href="{{ Route('user.edit') }}">Modifier les informations</a></div>
+                <div class="card-header d-flex justify-content-between">
+                    {{ __('Dashboard') }}
+                    <button class="bb-pr"><a class="m-2 text-white" href="{{ Route('user.edit') }}" style="text-decoration: none;">Modifier les informations</a></button>
+                </div>
 
                 <div class="card-body">
                     <div>
@@ -20,9 +23,9 @@
                             </a>
                         @endif
                     </div>
-                    <div>
-                        <a class="m-2" href="#">Gérer les produits</a>
-                        <a class="m-2" href="{{ Route('category.index') }}">Gérer les Categories</a>
+                    <div class="d-flex justify-content-end">
+                        <button class="bb-pr m-2"><a class="m-2 text-white" href="{{ Route('catalogue') }}" style="text-decoration: none;">Gérer les produits</a></button>
+                        <button class="bb-pr m-2"><a class="m-2 text-white" href="{{ Route('category.index') }}" style="text-decoration: none;">Gérer les Categories</a></button>
                     </div>
 
                 </div>

@@ -1,0 +1,88 @@
+.bb{
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+    text-decoration: none;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  img {
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 120px;
+  }
+
+  .t-desc{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cc-bg{
+    color: rgb(20, 126, 46);
+    text-decoration: none;
+  }
+
+  .cc-b{
+    color: #000;
+  }
+
+  .cc-w{
+    color: #fff;
+  }
+
+  .bb-pr{
+    background: rgb(20, 126, 46);
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 2px 2px grey;
+  }
+
+
+  .bb-sr{
+    background: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    color: rgb(20, 126, 46);
+    box-shadow: 2px 2px grey;
+  }
+
+
+  .bb-del{
+    background: rgb(238, 79, 50);
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 2px 2px grey;
+  }
+
+  .bb-3 {
+    background: rgb(4, 221, 4);
+    height: 40px;
+    color: white;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+  }

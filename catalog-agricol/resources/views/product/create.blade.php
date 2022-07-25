@@ -26,7 +26,7 @@
             <div class="col p-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Nouveau produit</h2>
+                        <h4>Nouveau produit</h4>
                     </div>
                     <div class="card-body">
                         <form action="/product" method="post" enctype="multipart/form-data">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <input type="submit" value="Enregistrer">
+                                <input class="bb-pr ps-2 pe-2" type="submit" value="Enregistrer">
                             </div>
 
                         </form>

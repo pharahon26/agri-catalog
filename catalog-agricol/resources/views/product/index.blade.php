@@ -8,48 +8,47 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h2>Liste de produits</h2>
+                            <h4>Liste de produits</h4>
                             @if (Auth::check())
-                                <button class="bb bb-3"><a class="m-2" href="{{ Route('produit.create')}}">Nouveau produit</a></button>
-
+                                <div>
+                                    <button class="bb-pr"><a class="m-2 text-white" href="{{ Route('produit.create')}}" style="text-decoration: none;">Nouveau produit</a></button>
+                                </div>
                             @endif
                         </div>
 
                         <div>
                             <form class="d-flex" action="{{Route('produit.search')}}" method="post" role="search">
                                 @csrf
-                                <input class="form-control me-2" type="search" name="search" placeholder="recherche" aria-label="recherche">
-                                <select  class="form-control p-2" name="category" id="category">
+                                <input class="form-control me-2" type="search" name="search" placeholder="recherche" aria-label="recherche" style="border-radius: 15px;">
+                                <select  class="form-control p-2" name="category" id="category" style="border-radius: 15px;">
                                     <option value="*">Catégories</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
-                                <button class="custom-btn" type="submit">Rechercher</button>
+                                <button class="bb-sr m-2" type="submit">Rechercher</button>
                             </form>
                         </div>
                     </div>
                     <div class="card-body p-2">
                         @foreach($products as $product)
-                            <div class="card m-2" >
+                            <div class="card m-2" style="border: none;">
                                 <div class="card-body">
-                                    <a href='/product/{{$product->id}}'>
+                                    <a class="cc-bg" href='/product/{{$product->id}}'>
                                         <div class="row">
-                                            <div class="col-3">
-                                                <img class="align-self-center" src='/storage/{{$product->image}}' alt="product image" width="200" height="120">
+                                            <div class="col-4">
+                                                <img class="p-0" src='/storage/{{$product->image}}' alt="product image">
                                             </div>
-                                            <div class="col-9">
+                                            <div class="col-8 p-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <p class="fw-bold p-1">{{ $product->name }}</p>
-                                                    <p class="p-1">{{ $product->category->name }}</p>
-                                                    <p class="p-1">{{ $product->price }} fcfa </p>
+                                                    <p class="fw-bold">{{ $product->name }}</p>
+                                                    <p class="">{{ $product->category->name }}</p>
+                                                    <p class="">{{ $product->price }} fcfa </p>
                                                 </div>
-                                                <div class="d-flex justify-content-end">
-                                                    <p class="p-1">{{ $product->quantity }} {{ $product->quantity_type }}</p>
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="t-desc me-3">{{ $product->description }}</p>
+                                                    <p class="">{{ $product->quantity }} {{ $product->quantity_type }}</p>
                                                 </div>
-
-                                                <p class="p-2">{{ $product->description }}</p>
-
                                             </div>
                                         </div>
 

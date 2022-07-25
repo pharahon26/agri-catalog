@@ -25,12 +25,16 @@
                         </div>
                         @if (Auth::check())
                             <div class="d-flex justify-content-end">
-                                <a href="/product/{{ $product->id }}/edit" class="m-2">Modifier</a>
-                                <form action='/product/{{$product->id}}' method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button>supprimer</button>
-                                </form>
+                                <div>
+                                    <button class="bb-pr m-2"><a class="text-white" href="/product/{{ $product->id }}/edit" style="text-decoration: none;">Modifier</a></button>
+                                </div>
+                                <div>
+                                    <form action='/product/{{$product->id}}' method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bb-del m-2">supprimer</button>
+                                    </form>
+                                </div>
                             </div>
 
                         @endif

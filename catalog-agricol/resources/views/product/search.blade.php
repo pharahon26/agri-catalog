@@ -7,46 +7,40 @@
             <div class="col p-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Liste de produits</h2>
+                        <h4>Liste de produits</h4>
                         <div>
-                            <form class="d-flex" action='{{ Route("produit.search") }}' method="post" role="search">
+                            <form class="d-flex" action="{{Route('produit.search')}}" method="post" role="search">
                                 @csrf
-                                <input class="form-control me-2" type="search" name="search" value="{{$search}}" placeholder="{{$search}}" aria-label="recherche">
-                                <select  class="form-control p-2" name="category" id="category">
+                                <input class="form-control me-2" type="search" name="search" placeholder="recherche" aria-label="recherche" style="border-radius: 15px;">
+                                <select  class="form-control p-2" name="category" id="category" style="border-radius: 15px;">
                                     <option value="*">Catégories</option>
                                     @foreach($categories as $category)
-                                        @if($category_id == $category->id)
-                                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
-                                        @else
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endif
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
-                                <button type="submit">Rechercher</button>
+                                <button class="bb-sr m-2" type="submit">Rechercher</button>
                             </form>
                         </div>
                     </div>
                     <div class="card-body p-2">
                         @foreach($products as $product)
-                            <div class="card m-2" >
+                            <div class="card m-2" style="border: none;">
                                 <div class="card-body">
-                                    <a href='/product/{{$product->id}}'>
+                                    <a  class="cc-bg" href='/product/{{$product->id}}'>
                                         <div class="row">
-                                            <div class="col-3">
-                                                <img class="align-self-center" src='/storage/{{$product->image}}' alt="product image" width="200" height="120">
+                                            <div class="col-4">
+                                                <img class="p-0" src='/storage/{{$product->image}}' alt="product image">
                                             </div>
-                                            <div class="col-9">
+                                            <div class="col-8 p-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <p class="fw-bold p-1">{{ $product->name }}</p>
-                                                    <p class="p-1">{{ $product->category->name }}</p>
-                                                    <p class="p-1">{{ $product->price }} fcfa </p>
+                                                    <p class="fw-bold">{{ $product->name }}</p>
+                                                    <p class="">{{ $product->category->name }}</p>
+                                                    <p class="">{{ $product->price }} fcfa </p>
                                                 </div>
-                                                <div class="d-flex justify-content-end">
-                                                    <p class="p-1">{{ $product->quantity }} {{ $product->quantity_type }}</p>
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="t-desc pe-3">{{ $product->description }}</p>
+                                                    <p class="ms-2">{{ $product->quantity }} {{ $product->quantity_type }}</p>
                                                 </div>
-
-                                                <p class="p-2">{{ $product->description }}</p>
-
                                             </div>
                                         </div>
 

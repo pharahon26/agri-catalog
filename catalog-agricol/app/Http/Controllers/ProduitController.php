@@ -30,9 +30,12 @@ class ProduitController extends Controller
         if ($search){
             $products = Produit::orderBy('name', "desc")->where('name','LIKE', '%' . $search .'%')->cursorPaginate(5);
         }
-        if($category != '*'){
-            $products = Produit::orderBy('name', "desc")->where('category_id','=', $category )->cursorPaginate(5);
+        if($category){
+            if($category != '*'){
+                $products = Produit::orderBy('name', "desc")->where('category_id','=', $category )->cursorPaginate(5);
+            }
         }
+
 
         $categories = Category::orderBy('name', "desc")->get();
 

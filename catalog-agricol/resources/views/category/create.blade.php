@@ -6,7 +6,7 @@
             <div class="col-2"></div>
             <div class="col p-3 bg-light">
 
-            <h2>Nouvelle catégory</h2>
+            <h4>Nouvelle catégory</h4>
 
             <form action="/category" method="post">
                 @csrf
