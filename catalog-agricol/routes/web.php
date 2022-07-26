@@ -111,4 +111,5 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/user/edit', [HomeController::class, 'edit'])->name('user.edit');
 Route::post('/user/update', [HomeController::class, 'update'])->name('user.update');
-
+Route::get('/user/edit_password', [HomeController::class, 'password'])->name('user.password');
+Route::post('/user/pm', [HomeController::class, 'modifPassword'])->name('user.pm');

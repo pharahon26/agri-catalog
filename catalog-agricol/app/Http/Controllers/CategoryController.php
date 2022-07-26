@@ -39,6 +39,10 @@ class CategoryController extends Controller
     // }
 
     public function store() {
+        request()->validate([
+            'name' => 'required|min:3|max:255|unique:categories,name',
+            'description' => 'min:3|max:255',
+       ]);
 
         $category = new Category();
         $category->name = request('name');
@@ -56,11 +60,15 @@ class CategoryController extends Controller
     }
 
     public function update($id) {
+        request()->validate([
+            'name' => 'min:3|max:255',
+            'description' => 'min:3|max:255',
+       ]);
 
         $category = Category::findOrFail($id);
         $category->name = request('name');
         $category->description = request('description');
-        $category->save();
+        $category->update();
 
         return redirect('/category');
     }

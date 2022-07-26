@@ -1,10 +1,9 @@
 @extends('layout.layout')
 
 @section('content')
-    <div class="container justify-content-center">
-        <div class="row pt-3">
-            <div class="col-3"></div>
-            <div class="col p-3">
+    <div class="container">
+        <div class="row justify-content-center pt-3">
+            <div class="col-md-6 p-3">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
@@ -42,7 +41,6 @@
                 </div>
 
             </div>
-            <div class="col-3"></div>
         </div>
     </div>
 @endsection

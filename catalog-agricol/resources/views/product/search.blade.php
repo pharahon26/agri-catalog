@@ -1,10 +1,9 @@
 @extends('layout.layout')
 
 @section('content')
-    <div class="container justify-content-center">
-        <div class="row pt-3">
-            <div class="col-2"></div>
-            <div class="col p-3">
+    <div class="container">
+        <div class="row justify-content-center pt-3">
+            <div class="col-md-8 p-3">
                 <div class="card">
                     <div class="card-header">
                         <h4>Liste de produits</h4>
@@ -12,10 +11,14 @@
                             <form class="d-flex" action="{{Route('produit.search')}}" method="post" role="search">
                                 @csrf
                                 <input class="form-control me-2" type="search" name="search" placeholder="recherche" aria-label="recherche" style="border-radius: 15px;">
-                                <select  class="form-control p-2" name="category" id="category" style="border-radius: 15px;">
+                                <select  class="form-control p-2" name="category" id="category" style="border-radius: 15px;" value="$category_id">
                                     <option value="*">Catégories</option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @if($category->id === $category_id)
+                                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                                        @else
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <button class="bb-sr m-2" type="submit">Rechercher</button>
@@ -57,7 +60,6 @@
                 </div>
 
             </div>
-            <div class="col-2"></div>
         </div>
     </div>
 @endsection

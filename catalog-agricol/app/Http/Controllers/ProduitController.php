@@ -58,7 +58,8 @@ class ProduitController extends Controller
 
         request()->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|max:255|unique:produits,name',
+            'description' => 'min:3|max:255',
             'price' => 'required',
             'quantity' => 'required',
             'quantity_type' => 'required',
@@ -67,12 +68,12 @@ class ProduitController extends Controller
        if (request()->hasFile('image')) {
             $product = new Produit();
             $imgFile = request()->file('image');
-            $img = Image::make($imgFile);
-            $img->resize(200 ,200);
+            // $img = Image::make($imgFile);
+            // $img->resize(200 ,200);
             $product->image = substr($imgFile->store('public/assets/images'),7);
-            $fileName = substr($product->image,19);
-            Storage::disk('local')->put('public/assets/thumbs/'.$fileName, $img,'public');
-            $product->thumbnail = 'assets/thumbs/'.$fileName;
+            // $fileName = substr($product->image,19);
+            // Storage::disk('local')->put('public/assets/thumbs/'.$fileName, $img,'public');
+            // $product->thumbnail = 'assets/thumbs/'.$fileName;
             $product->name = request('name');
             $product->description = request('description');
             $product->price = request('price');
@@ -82,7 +83,7 @@ class ProduitController extends Controller
             $product->user_id = Auth::id();
             $product->save();
        }
-        return redirect('/');
+        return redirect()->route('home');
     }
 
     public function edit($id) {
@@ -92,17 +93,21 @@ class ProduitController extends Controller
     }
 
     public function update($id) {
-
+        request()->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'min:3|max:255',
+            'description' => 'min:3|max:255',
+       ]);
         $product = Produit::findOrFail($id);
 
         if (request('image')){
             $imgFile = request()->file('image');
-            $img = Image::make($imgFile);
-            $img->resize(200 ,200);
+            // $img = Image::make($imgFile);
+            // $img->resize(200 ,200);
             $product->image = substr($imgFile->store('public/assets/images'),7);
-            $fileName = substr($product->image,19);
-            Storage::disk('local')->put('public/assets/thumbs/'.$fileName, $img,'public');
-            $product->thumbnail = 'assets/thumbs/'.$fileName;
+            // $fileName = substr($product->image,19);
+            // Storage::disk('local')->put('public/assets/thumbs/'.$fileName, $img,'public');
+            // $product->thumbnail = 'assets/thumbs/'.$fileName;
         }
 
         $product->name = request('name');

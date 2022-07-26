@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    {{ __('Dashboard') }}
+                    <h4>Profil</h4>
                     <button class="bb-pr"><a class="m-2 text-white" href="{{ Route('user.edit') }}" style="text-decoration: none;">Modifier les informations</a></button>
                 </div>
 
@@ -17,11 +17,6 @@
                     <div>
                         <p>{{$user->name}}</p>
                         <p>{{$user->email}}</p>
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
                     </div>
                     <div class="d-flex justify-content-end">
                         <button class="bb-pr m-2"><a class="m-2 text-white" href="{{ Route('catalogue') }}" style="text-decoration: none;">Gérer les produits</a></button>

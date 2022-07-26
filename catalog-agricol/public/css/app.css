@@ -50,6 +50,7 @@
 
   .bb-pr{
     background: rgb(20, 126, 46);
+    font-size: 18px;
     text-decoration: none;
     border: none;
     border-radius: 15px;
@@ -63,8 +64,9 @@
     text-decoration: none;
     border: none;
     border-radius: 15px;
+    font-size: 18px;
     color: rgb(20, 126, 46);
-    box-shadow: 2px 2px grey;
+    box-shadow: 1px 1px grey;
   }
 
 
@@ -73,6 +75,7 @@
     text-decoration: none;
     border: none;
     border-radius: 15px;
+    font-size: 18px;
     color: white;
     box-shadow: 2px 2px grey;
   }

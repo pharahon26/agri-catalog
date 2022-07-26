@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
         });
         Schema::table('categories', function (Blueprint $table) {
+            $table->string('name')->unique();
             $table->string('description')->nullable();
         });
     }

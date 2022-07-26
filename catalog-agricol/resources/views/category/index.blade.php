@@ -1,10 +1,9 @@
 @extends('layout.layout')
 
 @section('content')
-    <div class="container justify-content-center">
-        <div class="row pt-3">
-            <div class="col-2"></div>
-            <div class="col p-3">
+    <div class="container">
+        <div class="row justify-content-center pt-3">
+            <div class="col-md-8 p-3">
                 <div class="card">
                     <div class="card-header">
 
@@ -16,7 +15,7 @@
 
                         </div>
                         <div>
-                            <form class="d-flex" action='{{ Route("category.search") }}' method="post" role="search">
+                            <form class="d-flex m-2" action='{{ Route("category.search") }}' method="post" role="search">
                                 @csrf
                                 <input class="form-control me-2" type="search" name="search" placeholder="recherche" aria-label="recherche" style="border-radius: 15px;">
                                 <button class="bb-sr" type="submit">Rechercher</button>
@@ -33,7 +32,7 @@
                                             <form action='/category/{{$category->id}}' method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="bb-del ph-2">supprimer</button>
+                                                <button class="bb-del ph-2 ps-2 pe-2">supprimer</button>
                                             </form>
                                         </div>
                                         <div>
@@ -56,7 +55,6 @@
                 </div>
 
             </div>
-            <div class="col-2"></div>
         </div>
     </div>
 @endsection

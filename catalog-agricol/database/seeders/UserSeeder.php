@@ -22,18 +22,22 @@ class UserSeeder extends Seeder
         ])->each(function ($user){
             Category::factory()->create([
                 'name' => 'Fruits',
+                'description' => 'C\'est sucrée',
                 'user_id' => $user->id,
             ]);
             Category::factory()->create([
                 'name' => 'Céréales',
+                'description' => 'Des grains',
                 'user_id' => $user->id,
             ]);
             Category::factory()->create([
                 'name' => 'Légumes',
+                'description' => 'Les trucs vert',
                 'user_id' => $user->id,
             ]);
             Category::factory()->create([
                 'name' => 'Fleurs',
+                'description' => 'C\'est beau',
                 'user_id' => $user->id,
             ]);
 
